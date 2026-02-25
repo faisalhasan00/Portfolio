@@ -21,7 +21,7 @@ const Experience = () => {
         'Built modular Node.js systems to improve extensibility and reduce build errors by 30%',
         'Ensured reliable releases by proactively fixing critical production issues',
       ],
-      date: 'Aug 2025 – Present',
+      date: 'june 2025 – Present',
       icon: Briefcase,
     },
     {
