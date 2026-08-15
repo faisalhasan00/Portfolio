@@ -35,8 +35,7 @@ const LaunchGreeting = ({ onComplete }) => {
           transition={{ duration: 0.6 }}
           className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
         >
-          {/* Animated Background */}
-          <div className="absolute inset-0 bg-gradient-to-br from-cyan-900 via-teal-900 to-emerald-900 dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+          <div className="absolute inset-0 bg-[#090d16]">
             {/* Animated gradient orbs */}
             <motion.div
               className="absolute top-1/4 left-1/4 w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 lg:w-96 lg:h-96 bg-cyan-500/20 rounded-full blur-3xl"

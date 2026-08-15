@@ -1,96 +1,152 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
-import { useRef } from 'react'
-import { Mail, Phone, Github, Linkedin } from 'lucide-react'
+import { useState, useRef } from 'react'
+import { Mail, Phone, Github, Linkedin, Send, Copy, Check, ArrowUpRight } from 'lucide-react'
 
 const Contact = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const [copiedEmail, setCopiedEmail] = useState(false)
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
+  const [submitted, setSubmitted] = useState(false)
 
-  const socialLinks = [
-    {
-      name: 'GitHub',
-      icon: Github,
-      href: 'https://github.com/faisalhasan00',
-      color: 'hover:text-gray-900 dark:hover:text-white',
-    },
-    {
-      name: 'LinkedIn',
-      icon: Linkedin,
-      href: 'https://www.linkedin.com/in/mohammed-faisal-hasan-495a1a220/',
-      color: 'hover:text-cyan-500 dark:hover:text-cyan-400',
-    },
-    {
-      name: 'Email',
-      icon: Mail,
-      href: 'mailto:mohammedfaisalhasan@gmail.com',
-      color: 'hover:text-red-600 dark:hover:text-red-400',
-    },
-    {
-      name: 'Phone',
-      icon: Phone,
-      href: 'tel:+918106342858',
-      color: 'hover:text-green-600 dark:hover:text-green-400',
-    },
-  ]
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText('mohammedfaisalhasan@gmail.com')
+    setCopiedEmail(true)
+    setTimeout(() => setCopiedEmail(false), 2500)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    if (!formData.name || !formData.email || !formData.message) return
+    setSubmitted(true)
+    setTimeout(() => {
+      setFormData({ name: '', email: '', message: '' })
+      setSubmitted(false)
+    }, 4000)
+  }
 
   return (
-    <section
-      id="contact"
-      ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800/50"
-    >
-      <div className="max-w-4xl mx-auto">
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          Get In Touch
-        </motion.h2>
-
-        <motion.div
-          className="max-w-2xl mx-auto"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <h3 className="text-2xl font-semibold mb-6 text-center text-gray-900 dark:text-white">
-            Let's Connect
-          </h3>
-          <p className="text-gray-700 dark:text-gray-300 mb-12 text-center">
-            Have a project in mind or want to collaborate? Feel free to reach
-            out!
+    <section id="contact" ref={ref} className="py-20 px-6 sm:px-12 max-w-7xl mx-auto border-t border-gray-200">
+      <div className="space-y-12">
+        <div className="text-left space-y-3 max-w-3xl">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-black">
+            Let's build something together
+          </h2>
+          <p className="text-xl text-gray-600">
+            Have a project in mind, an opportunity, or need help building custom AI automations? Reach out anytime.
           </p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {socialLinks.map((social, index) => {
-              const Icon = social.icon
-              return (
-                <motion.a
-                  key={social.name}
-                  href={social.href}
-                  target={social.href.startsWith('http') ? '_blank' : '_self'}
-                  rel={social.href.startsWith('http') ? 'noopener noreferrer' : ''}
-                  className={`flex items-center gap-4 p-4 glass rounded-lg transition-colors ${social.color}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={isInView ? { opacity: 1, y: 0 } : {}}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  whileTap={{ scale: 0.95 }}
+        <div className="grid md:grid-cols-12 gap-12 items-start">
+          {/* Direct Details Card */}
+          <div className="md:col-span-5 space-y-6">
+            <div className="bg-gray-50 rounded-3xl border border-gray-200 p-8 space-y-6">
+              <h3 className="text-2xl font-medium text-black">Direct Contact</h3>
+
+              {/* Email with copy button */}
+              <div className="flex items-center justify-between p-4 rounded-2xl bg-white border border-gray-200 text-sm">
+                <div className="flex items-center gap-3 overflow-hidden">
+                  <Mail className="w-5 h-5 text-gray-700 flex-shrink-0" />
+                  <span className="truncate text-black font-medium">mohammedfaisalhasan@gmail.com</span>
+                </div>
+                <button
+                  onClick={handleCopyEmail}
+                  className="p-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-black transition flex-shrink-0 ml-2"
+                  title="Copy Email"
                 >
-                  <Icon className="w-6 h-6" />
-                  <span className="font-medium">{social.name}</span>
-                </motion.a>
-              )
-            })}
+                  {copiedEmail ? <Check className="w-4 h-4 text-emerald-600" /> : <Copy className="w-4 h-4" />}
+                </button>
+              </div>
+
+              {/* Phone */}
+              <div className="flex items-center gap-3 p-4 rounded-2xl bg-white border border-gray-200 text-sm">
+                <Phone className="w-5 h-5 text-gray-700 flex-shrink-0" />
+                <a href="tel:+918106342858" className="text-black font-medium hover:underline">+91 81063 42858</a>
+              </div>
+
+              {/* Social Channels */}
+              <div className="flex items-center gap-3 pt-2">
+                <a
+                  href="https://github.com/faisalhasan00"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-3 rounded-full bg-black text-white flex items-center justify-center gap-2 text-sm font-medium hover:bg-gray-800 transition"
+                >
+                  <Github className="w-4 h-4" />
+                  <span>GitHub</span>
+                </a>
+                <a
+                  href="https://www.linkedin.com/in/mohammed-faisal-hasan-495a1a220/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-1 py-3 rounded-full border border-gray-300 text-black flex items-center justify-center gap-2 text-sm font-medium hover:border-black transition"
+                >
+                  <Linkedin className="w-4 h-4" />
+                  <span>LinkedIn</span>
+                </a>
+              </div>
+            </div>
           </div>
-        </motion.div>
+
+          {/* Contact Form */}
+          <div className="md:col-span-7">
+            <div className="bg-white rounded-3xl border border-gray-200 p-8">
+              {submitted ? (
+                <div className="py-12 text-center text-black space-y-2">
+                  <p className="text-2xl font-medium">Thank you for your message!</p>
+                  <p className="text-base text-gray-600">I will get back to you as soon as possible.</p>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-5">
+                  <div>
+                    <label className="block text-sm font-medium text-black mb-2">Your Name</label>
+                    <input
+                      type="text"
+                      required
+                      placeholder="e.g. Faisal Hasan"
+                      value={formData.name}
+                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-black text-base font-normal transition"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-black mb-2">Email Address</label>
+                    <input
+                      type="email"
+                      required
+                      placeholder="e.g. name@example.com"
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-black text-base font-normal transition"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-black mb-2">Message</label>
+                    <textarea
+                      required
+                      rows={4}
+                      placeholder="Tell me about your project or inquiry..."
+                      value={formData.message}
+                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      className="w-full px-5 py-3.5 rounded-2xl bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:bg-white focus:border-black text-base font-normal resize-none transition"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="w-full py-4 bg-black hover:bg-gray-800 text-white font-medium rounded-full flex items-center justify-center gap-2 text-base transition shadow-sm"
+                  >
+                    <Send className="w-4 h-4" />
+                    <span>Send Message</span>
+                  </button>
+                </form>
+              )}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   )
 }
 
 export default Contact
-

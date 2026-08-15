@@ -1,16 +1,13 @@
 import { useCallback } from 'react'
 import Particles from '@tsparticles/react'
 import { loadSlim } from '@tsparticles/slim'
-import { useTheme } from '../context/ThemeContext'
 
 const ParticleBackground = () => {
-  const { theme } = useTheme()
-
   const particlesInit = useCallback(async (engine) => {
     await loadSlim(engine)
   }, [])
 
-  const particlesLoaded = useCallback(async (container) => {
+  const particlesLoaded = useCallback(async () => {
     // Particles loaded
   }, [])
 
@@ -50,10 +47,10 @@ const ParticleBackground = () => {
         },
         particles: {
           color: {
-            value: theme === 'dark' ? '#14b8a6' : '#06b6d4',
+            value: '#06b6d4',
           },
           links: {
-            color: theme === 'dark' ? '#14b8a6' : '#06b6d4',
+            color: '#06b6d4',
             distance: 150,
             enable: true,
             opacity: 0.3,
@@ -74,10 +71,10 @@ const ParticleBackground = () => {
               enable: true,
               area: 800,
             },
-            value: 50,
+            value: 45,
           },
           opacity: {
-            value: 0.5,
+            value: 0.4,
           },
           shape: {
             type: 'circle',
@@ -94,4 +91,3 @@ const ParticleBackground = () => {
 }
 
 export default ParticleBackground
-

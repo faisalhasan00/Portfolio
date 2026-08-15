@@ -1,218 +1,207 @@
-import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Rocket, Mail, ChevronDown } from 'lucide-react'
+import { ArrowDown, ArrowRight, Code2, Smartphone, Bot, Cpu, Sparkles, ShieldCheck, Zap, Database, Terminal, CheckCircle2 } from 'lucide-react'
 
 const Hero = () => {
-  const [currentRole, setCurrentRole] = useState(0)
-  const roles = [
-    'AI Automation Developer',
-    'Full Stack Engineer',
-    'Web Scraping Specialist',
+  const highlights = [
+    { label: 'Experience', value: '1.5+ Yrs', icon: Zap, color: 'text-amber-500 bg-amber-50 border-amber-200' },
+    { label: 'Delivered', value: '20+ Projects', icon: CheckCircle2, color: 'text-blue-500 bg-blue-50 border-blue-200' },
+    { label: 'Mobile & Web', value: 'Full-Stack', icon: Smartphone, color: 'text-emerald-500 bg-emerald-50 border-emerald-200' },
+    { label: 'AI Assistance', value: 'Automations', icon: Bot, color: 'text-purple-500 bg-purple-50 border-purple-200' },
   ]
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentRole((prev) => (prev + 1) % roles.length)
-    }, 3000)
-    return () => clearInterval(interval)
-  }, [])
-
-  const scrollToProjects = () => {
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
-  }
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.6, ease: 'easeOut' },
-    },
-  }
+  const corePills = [
+    { title: 'AI Automation Engineer', bg: 'bg-amber-100 text-amber-900 border-amber-300' },
+    { title: 'Full Stack & Mobile Dev', bg: 'bg-blue-100 text-blue-900 border-blue-300' },
+    { title: 'Java & Python Specialist', bg: 'bg-emerald-100 text-emerald-900 border-emerald-300' },
+    { title: 'Secure & Scalable Architect', bg: 'bg-purple-100 text-purple-900 border-purple-300' },
+  ]
 
   return (
-    <section
-      id="home"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden py-20"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
-          {/* Left Column: Text Content */}
-          <motion.div
-            className="text-center lg:text-left"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-          >
-            <motion.p
-              className="text-lg md:text-xl text-cyan-500 dark:text-cyan-400 font-medium mb-3"
-              variants={itemVariants}
+    <div id="home" className="space-y-16 lg:space-y-24 pb-12">
+      {/* 1. Main Hero Visual Stage */}
+      <section className="px-6 sm:px-12 max-w-7xl mx-auto pt-6 sm:pt-12 lg:pt-16">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+          {/* Left Column */}
+          <div className="lg:col-span-7 space-y-6 text-left">
+            {/* Vibrant Skill Badges Strip */}
+            <motion.div
+              initial={{ opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="flex flex-wrap items-center gap-2"
             >
-            </motion.p>
+              {corePills.map((pill) => (
+                <span
+                  key={pill.title}
+                  className={`px-3 py-1 rounded-full text-xs font-semibold border shadow-sm ${pill.bg}`}
+                >
+                  {pill.title}
+                </span>
+              ))}
+            </motion.div>
 
+            {/* Headline */}
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight"
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-black leading-[1.15]"
             >
-              <span className="gradient-text block">Mohammed Faisal</span>
-              <span className="gradient-text block">Hasan</span>
+              Building fast <span className="text-orange-600 underline decoration-orange-300 decoration-wavy decoration-2">web & mobile</span> apps with <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">AI assistance</span>.
             </motion.h1>
 
-            <motion.div
-              className="h-14 md:h-16 mb-6 flex items-center justify-center lg:justify-start"
-              variants={itemVariants}
-            >
-              <AnimatedRole roles={roles} currentRole={currentRole} />
-            </motion.div>
-
+            {/* Concise Visual Tagline */}
             <motion.p
-              className="text-lg md:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-xl mx-auto lg:mx-0 leading-relaxed"
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="text-lg sm:text-xl text-gray-700 font-normal leading-relaxed max-w-2xl"
             >
-              Transforming ideas into intelligent solutions through code. I build
-              scalable applications that bridge the gap between cutting-edge AI
-              and real-world impact.
+              Software Developer & AI Engineer at <strong>Ranazonai Technologies</strong>. Crafting secure, scalable full-stack web platforms, mobile apps, and autonomous workflows.
             </motion.p>
 
+            {/* Pill CTA Buttons */}
             <motion.div
-              className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start"
-              variants={itemVariants}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+              className="flex flex-wrap items-center gap-3.5 pt-2"
             >
-              <motion.button
-                onClick={scrollToProjects}
-                className="group px-8 py-4 bg-gradient-to-r from-cyan-500 to-emerald-500 text-white rounded-xl font-semibold flex items-center justify-center gap-2 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 relative overflow-hidden"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center gap-2 rounded-full bg-black text-white px-8 py-4 text-base font-medium hover:bg-gray-800 transition shadow-sm hover:scale-[1.02]"
               >
-                <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <Rocket className="w-5 h-5 relative z-10 group-hover:rotate-12 transition-transform" />
-                <span className="relative z-10">View My Work</span>
-              </motion.button>
-              <motion.button
-                onClick={scrollToContact}
-                className="group px-8 py-4 border-2 border-cyan-500/50 dark:border-cyan-400/50 text-cyan-600 dark:text-cyan-400 rounded-xl font-semibold flex items-center justify-center gap-2 hover:bg-cyan-500/10 dark:hover:bg-cyan-500/10 hover:border-cyan-500 dark:hover:border-cyan-400 transition-all duration-300"
-                whileHover={{ scale: 1.05, y: -2 }}
-                whileTap={{ scale: 0.95 }}
+                <span>View Live Projects</span>
+                <ArrowRight className="w-4 h-4" />
+              </a>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-black text-black px-8 py-4 text-base font-medium transition hover:bg-gray-50"
               >
-                <Mail className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                Get In Touch
-              </motion.button>
+                Let's Connect
+              </a>
             </motion.div>
-          </motion.div>
 
-          {/* Right Column: Profile Image */}
+            {/* Highlights Mini-Grid */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: 0.4 }}
+              className="grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4"
+            >
+              {highlights.map((h) => {
+                const Icon = h.icon
+                return (
+                  <div
+                    key={h.label}
+                    className="p-3.5 rounded-2xl bg-white border border-gray-200 shadow-sm flex flex-col justify-between"
+                  >
+                    <div className={`w-8 h-8 rounded-xl border flex items-center justify-center mb-2 ${h.color}`}>
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <p className="text-base font-bold text-black">{h.value}</p>
+                      <p className="text-xs text-gray-500 font-medium">{h.label}</p>
+                    </div>
+                  </div>
+                )
+              })}
+            </motion.div>
+          </div>
+
+          {/* Right Visual Graphic Card */}
           <motion.div
-            className="flex justify-center lg:justify-end relative"
-            initial={{ opacity: 0, scale: 0.8, x: 50 }}
-            animate={{ opacity: 1, scale: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="lg:col-span-5 flex justify-center"
           >
-            <div className="relative">
-              {/* Glow effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-emerald-500 rounded-full blur-2xl opacity-30 animate-pulse" />
+            <div className="w-full max-w-md bg-gradient-to-br from-gray-900 via-zinc-900 to-black rounded-3xl p-6 sm:p-7 text-white shadow-2xl border border-zinc-800 relative overflow-hidden">
+              {/* Glow Accent */}
+              <div className="absolute -top-24 -right-24 w-48 h-48 bg-orange-500/20 rounded-full blur-3xl pointer-events-none" />
+              <div className="absolute -bottom-24 -left-24 w-48 h-48 bg-blue-500/20 rounded-full blur-3xl pointer-events-none" />
 
-              {/* Gradient border */}
-              <motion.div
-                className="relative w-72 h-72 md:w-80 md:h-80 rounded-full bg-gradient-to-br from-cyan-500 via-emerald-500 to-teal-500 p-1.5 shadow-2xl"
-                whileHover={{ scale: 1.05, rotate: 2 }}
-                transition={{ type: 'spring', stiffness: 200, damping: 15 }}
-              >
-                <div className="w-full h-full rounded-full overflow-hidden bg-gray-200 dark:bg-gray-800">
-                  <img
-                    src="/1.png"
-                    alt="Mohammed Faisal Hasan"
-                    className="w-full h-full object-cover"
-                  />
+              {/* Terminal Window Header */}
+              <div className="flex items-center justify-between border-b border-zinc-800 pb-3 mb-4">
+                <div className="flex items-center gap-2">
+                  <span className="w-3 h-3 rounded-full bg-rose-500" />
+                  <span className="w-3 h-3 rounded-full bg-amber-500" />
+                  <span className="w-3 h-3 rounded-full bg-emerald-500" />
                 </div>
-              </motion.div>
+                <span className="text-xs font-mono text-zinc-400 font-medium">faisal.engineer.js</span>
+                <span className="text-xs font-mono text-emerald-400 font-semibold flex items-center gap-1">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" /> active
+                </span>
+              </div>
 
-              {/* Decorative elements */}
-              <motion.div
-                className="absolute -top-4 -right-4 w-24 h-24 bg-cyan-500/20 rounded-full blur-xl"
-                animate={{
-                  scale: [1, 1.2, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
-              <motion.div
-                className="absolute -bottom-4 -left-4 w-32 h-32 bg-emerald-500/20 rounded-full blur-xl"
-                animate={{
-                  scale: [1, 1.3, 1],
-                  opacity: [0.3, 0.5, 0.3],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  ease: 'easeInOut',
-                }}
-              />
+              {/* Code Feature Display */}
+              <div className="space-y-3 font-mono text-xs text-zinc-300 leading-relaxed">
+                <p>
+                  <span className="text-purple-400">const</span> <span className="text-blue-400">engineer</span> = &#123;
+                </p>
+                <div className="pl-4 space-y-1 text-xs">
+                  <p><span className="text-zinc-400">name:</span> <span className="text-amber-300">'Mohammed Faisal Hasan'</span>,</p>
+                  <p><span className="text-zinc-400">role:</span> <span className="text-emerald-300">'AI Automation & Full-Stack'</span>,</p>
+                  <p><span className="text-zinc-400">mobile:</span> <span className="text-blue-300">'Secure & Scalable Apps (AI-Assisted)'</span>,</p>
+                  <p><span className="text-zinc-400">company:</span> <span className="text-orange-300">'Ranazonai Technologies'</span>,</p>
+                  <p><span className="text-zinc-400">stack:</span> [<span className="text-cyan-300">'React'</span>, <span className="text-cyan-300">'Next.js'</span>, <span className="text-cyan-300">'Java'</span>, <span className="text-cyan-300">'Python'</span>, <span className="text-cyan-300">'OpenAI'</span>],</p>
+                  <p><span className="text-zinc-400">status:</span> <span className="text-emerald-400">'Open for opportunities 🚀'</span></p>
+                </div>
+                <p>&#125;;</p>
+              </div>
+
+              {/* Visual Badges Inside Terminal */}
+              <div className="pt-4 mt-4 border-t border-zinc-800 grid grid-cols-2 gap-2 text-[11px] font-mono">
+                <div className="flex items-center gap-1.5 text-emerald-400 bg-emerald-950/40 px-2.5 py-1.5 rounded-lg border border-emerald-800/50">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Secure & Scalable</span>
+                </div>
+                <div className="flex items-center gap-1.5 text-purple-400 bg-purple-950/40 px-2.5 py-1.5 rounded-lg border border-purple-800/50">
+                  <Bot className="w-3.5 h-3.5" />
+                  <span>AI-Assisted Dev</span>
+                </div>
+              </div>
             </div>
           </motion.div>
         </div>
+      </section>
 
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1, delay: 1.2 }}
-        >
-          <motion.a
-            href="#about"
-            className="flex flex-col items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          >
-            <span className="text-sm font-medium">Scroll Down</span>
-            <ChevronDown className="w-6 h-6" />
-          </motion.a>
-        </motion.div>
-      </div>
-    </section>
-  )
-}
+      {/* 2. Visual Feature Cards (Kent C. Dodds Showcase Strip) */}
+      <section id="intro" className="px-6 sm:px-12 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="p-6 rounded-3xl bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-md transition space-y-3">
+            <div className="w-10 h-10 rounded-2xl bg-amber-500 text-white flex items-center justify-center">
+              <Bot className="w-5 h-5" />
+            </div>
+            <h3 className="text-lg font-bold text-black">AI & Autonomous Agents</h3>
+            <p className="text-sm text-gray-600">
+              Custom ChatGPT integrations, autonomous agent workflows, and intelligent business automations.
+            </p>
+          </div>
 
-const AnimatedRole = ({ roles, currentRole }) => {
-  return (
-    <div className="relative h-full w-full">
-      {roles.map((role, index) => (
-        <motion.h2
-          key={role}
-          className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800 dark:text-gray-200 absolute inset-0 flex items-center justify-center lg:justify-start"
-          initial={{ opacity: 0, y: 20, scale: 0.9 }}
-          animate={{
-            opacity: index === currentRole ? 1 : 0,
-            y: index === currentRole ? 0 : -20,
-            scale: index === currentRole ? 1 : 0.9,
-          }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-        >
-          {role}
-        </motion.h2>
-      ))}
+          <div className="p-6 rounded-3xl bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-md transition space-y-3">
+            <div className="w-10 h-10 rounded-2xl bg-blue-600 text-white flex items-center justify-center">
+              <Smartphone className="w-5 h-5" />
+            </div>
+            <h3 className="text-lg font-bold text-black">Mobile Apps (AI-Assisted)</h3>
+            <p className="text-sm text-gray-600">
+              Cross-platform mobile apps with secure architectures and AI-boosted rapid development.
+            </p>
+          </div>
+
+          <div className="p-6 rounded-3xl bg-gray-50 border border-gray-200 hover:border-gray-300 hover:shadow-md transition space-y-3">
+            <div className="w-10 h-10 rounded-2xl bg-emerald-600 text-white flex items-center justify-center">
+              <Code2 className="w-5 h-5" />
+            </div>
+            <h3 className="text-lg font-bold text-black">Full-Stack & Java</h3>
+            <p className="text-sm text-gray-600">
+              Scalable web architectures with React, Next.js, Java, Node.js, and cloud deployments.
+            </p>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
 
 export default Hero
-

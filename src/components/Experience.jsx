@@ -1,120 +1,144 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import { Briefcase, GraduationCap } from 'lucide-react'
+import { Briefcase, GraduationCap, Calendar, MapPin } from 'lucide-react'
 
 const Experience = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   const experiences = [
     {
-      title: 'Software Developer & AI Automation',
-      company: 'Ranazonai Technologies (FileMyRTI)',
-      location: 'Hyderabad',
-      type: 'Full-time',
-      summary: 'Building AI-powered applications, automations, and robust web systems with a modern stack.',
-      achievements: [
-        'Developed AI apps using Cursor, GPT, LangChain, Next.js, TypeScript, Tailwind',
-        'Integrated Supabase auth and data layer to improve scalability and reliability',
-        'Implemented CI/CD with GitHub Actions for automated tests and deployments',
-        'Built modular Node.js systems to improve extensibility and reduce build errors by 30%',
-        'Ensured reliable releases by proactively fixing critical production issues',
+      role: 'Software Developer & AI Automation Engineer',
+      company: 'Ranazonai Technologies',
+      location: 'Remote',
+      period: 'Jan 12, 2025 – Present',
+      badge: 'Current Role',
+      points: [
+        'Developing and scaling end-to-end full-stack web applications with React, Next.js, Java, and robust backend architectures.',
+        'Building intelligent AI automation tools, autonomous workflow integrations, custom web scrapers, and conversational AI systems.',
+        'Managing cloud hosting deployments, Hostinger VPS infrastructure, domain/DNS management, and CI/CD pipelines.',
       ],
-      date: 'june 2025 – Present',
-      icon: Briefcase,
     },
     {
-      title: 'Founder',
-      company: 'QuickPrepp',
-      location: 'Remote',
-      type: 'Founder',
-      summary: 'Founded and developed an AI-powered learning platform that curates YouTube videos into structured courses with micro-projects, quizzes, and real-time mock test feedback.',
-      achievements: [
-        'Built full-stack platform using Next.js, Node.js, MySQL, OpenAI API, and YouTube API',
-        'Designed and implemented AI-powered content curation system',
-        'Created real-time feedback system for mock tests and quizzes',
-        'Launched and maintained production platform at quickprepp.in',
+      role: 'Full Stack Developer (Part-Time)',
+      company: 'TapMenu',
+      location: 'Remote / India',
+      period: 'March 2024 – December 2024',
+      badge: 'Product Founder',
+      points: [
+        'Engineered a smart digital QR menu platform for restaurants and cafés enabling real-time dish management and contactless menu browsing.',
+        'Built full-stack architecture from scratch using Next.js, React, Tailwind CSS, Node.js, and MongoDB.',
+        'Deployed and maintained live production web platform at tapmenu.in.',
       ],
-      date: 'Jan 2024 – Jul 2025',
-      icon: Briefcase,
     },
   ]
 
   const education = [
     {
-      degree: 'Bachelor of Computer Applications (BCA)',
+      title: 'Java Full Stack Development Course',
+      institution: 'Naresh i Technologies',
+      period: 'June 2024 – December 2024',
+      badge: 'Certification',
+      details: 'Comprehensive hands-on training covering Core Java, Advanced Java, Object-Oriented Programming (OOP), Data Structures, RESTful APIs, and Database Integration.',
+    },
+    {
+      title: 'Bachelor of Computer Applications (BCA)',
       institution: 'Osmania University',
-      year: '2024',
-      icon: GraduationCap,
-      details: [
-        'Relevant coursework in AI/ML',
-        'Active in technical projects',
-        'Strong academic performance',
-      ],
+      period: 'Graduated 2024',
+      badge: 'Degree',
+      details: 'Specialized in Software Engineering, Web Development, Data Structures, and Database Systems.',
     },
   ]
 
   return (
-    <section
-      id="experience"
-      ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900"
-    >
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <motion.div
-          className="text-center mb-16"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 text-gray-900 dark:text-white">
+    <section id="experience" ref={ref} className="py-20 px-6 sm:px-12 max-w-7xl mx-auto border-t border-gray-200">
+      <div className="space-y-12">
+        <div className="space-y-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-black">
             Experience & Education
           </h2>
-          <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400">
-            My professional journey and academic background in software
-            development and AI/ML.
+          <p className="text-lg text-gray-600">
+            My professional roles, product experience, and technical training
           </p>
-        </motion.div>
+        </div>
 
-        {/* Combined Timeline */}
-        <div className="relative">
-          <div className="space-y-8 sm:space-y-12 relative">
-            {/* Vertical Timeline Line - continuous for both Experience and Education */}
-            <div className="hidden sm:block absolute left-4 sm:left-8 top-0 bottom-8 w-0.5 bg-gray-300 dark:bg-gray-700"></div>
-
-            {/* Experience Items */}
-            {experiences.map((exp, index) => (
-              <ExperienceCard
-                key={index}
-                experience={exp}
-                index={index}
-                isInView={isInView}
-              />
-            ))}
-
-            {/* Education Section Header */}
-            <motion.div
-              className="pl-0 sm:pl-20"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <h3 className="text-2xl sm:text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-                Education
+        <div className="grid md:grid-cols-2 gap-10">
+          {/* Work Experience */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3 border-b border-gray-200 pb-4">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-black">
+                <Briefcase className="w-5 h-5" />
+              </div>
+              <h3 className="text-2xl font-medium text-black">
+                Work Experience
               </h3>
-            </motion.div>
+            </div>
 
-            {/* Education Items */}
-            {education.map((edu, index) => (
-              <EducationCard
-                key={index}
-                education={edu}
-                index={index}
-                isInView={isInView}
-              />
-            ))}
+            <div className="space-y-6">
+              {experiences.map((exp) => (
+                <div
+                  key={exp.role}
+                  className="bg-white rounded-3xl border border-gray-200 p-8 space-y-4 hover:border-gray-400 hover:shadow-md transition-all"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">
+                      {exp.period}
+                    </span>
+                    <span className="text-xs font-semibold uppercase text-gray-500 tracking-wider">
+                      {exp.badge}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-semibold text-black leading-snug">{exp.role}</h4>
+                    <p className="text-sm font-medium text-gray-600 mt-1">{exp.company} • {exp.location}</p>
+                  </div>
+
+                  <ul className="space-y-2 text-sm text-gray-600 list-disc list-inside leading-relaxed">
+                    {exp.points.map((pt, i) => (
+                      <li key={i}>{pt}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Education & Training */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-3 border-b border-gray-200 pb-4">
+              <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-black">
+                <GraduationCap className="w-5 h-5" />
+              </div>
+              <h3 className="text-2xl font-medium text-black">
+                Education & Training
+              </h3>
+            </div>
+
+            <div className="space-y-6">
+              {education.map((edu) => (
+                <div
+                  key={edu.title}
+                  className="bg-white rounded-3xl border border-gray-200 p-8 space-y-4 hover:border-gray-400 hover:shadow-md transition-all"
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-medium">
+                      {edu.period}
+                    </span>
+                    <span className="text-xs font-semibold uppercase text-gray-500 tracking-wider">
+                      {edu.badge}
+                    </span>
+                  </div>
+
+                  <div>
+                    <h4 className="text-xl font-semibold text-black leading-snug">{edu.title}</h4>
+                    <p className="text-sm font-medium text-gray-600 mt-1">{edu.institution}</p>
+                  </div>
+
+                  <p className="text-sm text-gray-600 leading-relaxed">
+                    {edu.details}
+                  </p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -122,119 +146,4 @@ const Experience = () => {
   )
 }
 
-const ExperienceCard = ({ experience, index, isInView }) => {
-  const Icon = experience.icon
-
-  return (
-    <motion.div
-      className="relative pl-0 sm:pl-20"
-      initial={{ opacity: 0, x: -30 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.6, delay: index * 0.2 }}
-    >
-      {/* Timeline Dot */}
-      <div className="absolute left-0 sm:left-0 top-0">
-        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-cyan-500 dark:bg-cyan-600 flex items-center justify-center shadow-lg">
-          <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-        </div>
-      </div>
-
-      {/* Card */}
-      <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700 ml-14 sm:ml-0">
-        {/* Date Badge */}
-        <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-cyan-500 dark:bg-cyan-600 text-white px-2 py-1 sm:px-4 sm:py-1.5 rounded-lg text-xs sm:text-sm font-medium">
-          {experience.date}
-        </div>
-
-        {/* Content */}
-        <div className="pr-16 sm:pr-24">
-          <div className="flex items-start gap-2 sm:gap-3 mb-2">
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-cyan-500 dark:bg-cyan-600 flex items-center justify-center flex-shrink-0">
-              <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1">
-                {experience.title}
-              </h3>
-              <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 break-words">
-                {experience.company} • {experience.location}
-              </p>
-            </div>
-          </div>
-
-          <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4 mt-3">
-            {experience.summary}
-          </p>
-
-          {/* Achievements */}
-          <ul className="space-y-2">
-            {experience.achievements.map((achievement, idx) => (
-              <li
-                key={idx}
-                className="flex items-start text-sm sm:text-base text-gray-700 dark:text-gray-300"
-              >
-                <span className="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400 mt-2 mr-3 flex-shrink-0"></span>
-                <span className="break-words">{achievement}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-const EducationCard = ({ education, index, isInView }) => {
-  const Icon = education.icon
-
-  return (
-    <motion.div
-      className="relative pl-0 sm:pl-20"
-      initial={{ opacity: 0, x: -30 }}
-      animate={isInView ? { opacity: 1, x: 0 } : {}}
-      transition={{ duration: 0.6, delay: 0.6 + index * 0.2 }}
-    >
-      {/* Timeline Dot */}
-      <div className="absolute left-0 sm:left-0 top-0">
-        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-emerald-500 dark:bg-emerald-600 flex items-center justify-center shadow-lg">
-          <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
-        </div>
-      </div>
-
-      {/* Card */}
-      <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 sm:p-6 shadow-md hover:shadow-lg transition-shadow border border-gray-200 dark:border-gray-700 ml-14 sm:ml-0">
-        <div className="flex items-start gap-2 sm:gap-3 mb-4">
-          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-emerald-500 dark:bg-emerald-600 flex items-center justify-center flex-shrink-0">
-            <Icon className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-          </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-gray-900 dark:text-white mb-1 break-words">
-              {education.degree}
-            </h3>
-            <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 break-words">
-              {education.institution} • {education.year}
-            </p>
-          </div>
-        </div>
-
-        {/* Education Details */}
-        {education.details && (
-          <ul className="space-y-2">
-            {education.details.map((detail, idx) => (
-              <li
-                key={idx}
-                className="flex items-start text-sm sm:text-base text-gray-700 dark:text-gray-300"
-              >
-                <span className="w-2 h-2 rounded-full bg-emerald-500 dark:bg-emerald-400 mt-2 mr-3 flex-shrink-0"></span>
-                <span className="break-words">{detail}</span>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </motion.div>
-  )
-}
-
 export default Experience
-

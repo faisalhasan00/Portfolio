@@ -1,131 +1,141 @@
 import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import { Moon, Sun, Menu, X } from 'lucide-react'
-import { useTheme } from '../context/ThemeContext'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, ArrowUpRight, Github, Linkedin, Mail } from 'lucide-react'
 
 const Navbar = () => {
-  const { theme, toggleTheme } = useTheme()
-  const [isScrolled, setIsScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50)
+      const sections = ['home', 'intro', 'about', 'projects', 'skills', 'experience', 'services', 'contact']
+      const scrollPosition = window.scrollY + 200
+
+      for (const section of sections) {
+        const element = document.getElementById(section)
+        if (element) {
+          const top = element.offsetTop
+          const height = element.offsetHeight
+          if (scrollPosition >= top && scrollPosition < top + height) {
+            setActiveSection(section)
+            break
+          }
+        }
+      }
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navItems = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Experience', href: '#experience' },
-    { name: 'Projects', href: '#projects' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'About', href: '#intro', id: 'intro' },
+    { name: 'Projects', href: '#projects', id: 'projects' },
+    { name: 'Skills', href: '#skills', id: 'skills' },
+    { name: 'Experience', href: '#experience', id: 'experience' },
+    { name: 'Services', href: '#services', id: 'services' },
+    { name: 'Contact', href: '#contact', id: 'contact' },
   ]
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md shadow-lg'
-        : 'bg-transparent'
-        }`}
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          <motion.a
-            href="#home"
-            className="text-xl font-bold gradient-text"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Faisal
-          </motion.a>
+    <nav className="w-full py-6 sm:py-8 px-6 sm:px-12 max-w-7xl mx-auto flex items-center justify-between relative z-50">
+      {/* Brand Title (Kent C. Dodds style) */}
+      <a
+        href="#home"
+        className="text-xl sm:text-2xl font-medium tracking-tight text-black hover:opacity-80 transition focus:outline-none"
+      >
+        <h1>Mohammed Faisal Hasan</h1>
+      </a>
 
-          {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item) => (
-              <motion.a
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 dark:text-gray-300 hover:text-cyan-500 dark:hover:text-cyan-400 transition-colors"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-              >
-                {item.name}
-              </motion.a>
-            ))}
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
-              whileHover={{ scale: 1.1, rotate: 15 }}
-              whileTap={{ scale: 0.9 }}
-              aria-label="Toggle theme"
+      {/* Center Nav Links (Kent C. Dodds style) */}
+      <div className="hidden lg:flex items-center space-x-8 text-lg font-medium text-gray-600">
+        {navItems.map((item) => {
+          const isActive = activeSection === item.id
+          return (
+            <a
+              key={item.name}
+              href={item.href}
+              className={`underlined transition hover:text-black focus:outline-none ${
+                isActive ? 'text-black font-semibold' : 'text-gray-600'
+              }`}
             >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </motion.button>
-          </div>
+              {item.name}
+            </a>
+          )
+        })}
+      </div>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden flex items-center space-x-4">
-            <motion.button
-              onClick={toggleTheme}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
-              whileTap={{ scale: 0.9 }}
-              aria-label="Toggle theme"
-            >
-              {theme === 'dark' ? (
-                <Sun className="w-5 h-5" />
-              ) : (
-                <Moon className="w-5 h-5" />
-              )}
-            </motion.button>
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-2 rounded-lg bg-gray-200 dark:bg-gray-700"
-              aria-label="Toggle menu"
-            >
-              {isMobileMenuOpen ? (
-                <X className="w-5 h-5" />
-              ) : (
-                <Menu className="w-5 h-5" />
-              )}
-            </button>
-          </div>
-        </div>
+      {/* Right Side Action Button (Kent C. Dodds style rounded-full) */}
+      <div className="hidden lg:flex items-center gap-3">
+        <a
+          href="https://github.com/faisalhasan00"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center text-gray-700 hover:border-black hover:text-black transition"
+          title="GitHub"
+        >
+          <Github className="w-4 h-4" />
+        </a>
+        <a
+          href="https://www.linkedin.com/in/mohammed-faisal-hasan-495a1a220/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-11 h-11 rounded-full border border-gray-300 flex items-center justify-center text-gray-700 hover:border-black hover:text-black transition"
+          title="LinkedIn"
+        >
+          <Linkedin className="w-4 h-4" />
+        </a>
+        <a
+          href="#contact"
+          className="rounded-full bg-black text-white px-6 py-2.5 text-sm font-medium hover:bg-gray-800 transition shadow-sm ml-2"
+        >
+          Get in touch
+        </a>
+      </div>
 
-        {/* Mobile Menu */}
+      {/* Mobile Menu Button */}
+      <div className="lg:hidden flex items-center">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center text-black hover:border-black transition focus:outline-none"
+          aria-label="Toggle Menu"
+        >
+          {isMobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+        </button>
+      </div>
+
+      {/* Mobile Dropdown */}
+      <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden py-4 space-y-2"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            className="lg:hidden absolute top-full left-6 right-6 mt-2 bg-white rounded-3xl border border-gray-200 p-6 shadow-xl space-y-4"
           >
             {navItems.map((item) => (
               <a
                 key={item.name}
                 href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block px-4 py-2 text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition-colors"
+                className="block text-lg font-medium text-gray-800 hover:text-black py-1"
               >
                 {item.name}
               </a>
             ))}
+            <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+              <a
+                href="#contact"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-center rounded-full bg-black text-white py-3 text-base font-medium"
+              >
+                Get in touch
+              </a>
+            </div>
           </motion.div>
         )}
-      </div>
-    </motion.nav>
+      </AnimatePresence>
+    </nav>
   )
 }
 
 export default Navbar
-

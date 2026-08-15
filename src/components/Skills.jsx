@@ -1,150 +1,76 @@
-import { motion } from 'framer-motion'
-import { useInView } from 'framer-motion'
 import { useRef } from 'react'
-import {
-  Code,
-  Globe,
-  Brain,
-  Settings,
-  Database,
-  Cloud,
-  Wrench,
-} from 'lucide-react'
+import { Code, Cpu, Database, Wrench } from 'lucide-react'
 
 const Skills = () => {
   const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-100px' })
 
   const skillCategories = [
     {
-      title: 'Languages',
+      title: 'Programming Languages',
       icon: Code,
-      skills: ['JavaScript', 'Python', 'Java'],
-      color: 'from-cyan-500 to-cyan-600',
-      bgGradient: 'from-cyan-500/10 to-cyan-600/10',
+      skills: ['Java (Core & Advanced)', 'JavaScript (ES6+)', 'Python', 'SQL', 'HTML5 & CSS3'],
     },
     {
-      title: 'Frameworks',
-      icon: Globe,
-      skills: ['React', 'Next.js', 'Node.js'],
-      color: 'from-emerald-500 to-emerald-600',
-      bgGradient: 'from-emerald-500/10 to-emerald-600/10',
+      title: 'Frontend & Mobile Engineering',
+      icon: Code,
+      skills: ['React.js', 'Next.js', 'Mobile App (Capacitor/PWA)', 'AI-Assisted Mobile Dev', 'Secure & Scalable Architecture', 'Tailwind CSS', 'Framer Motion', 'RESTful APIs'],
     },
     {
-      title: 'AI Tools',
-      icon: Brain,
-      skills: ['OpenAI API', 'LangChain', 'Hugging Face'],
-      color: 'from-teal-500 to-teal-600',
-      bgGradient: 'from-teal-500/10 to-teal-600/10',
+      title: 'Backend & AI Automations',
+      icon: Cpu,
+      skills: ['Node.js', 'Express.js', 'Java Backend (Spring/OOP)', 'Puppeteer', 'Playwright', 'n8n Workflows', 'OpenAI API'],
     },
     {
-      title: 'Automation',
-      icon: Settings,
-      skills: [
-        'Puppeteer',
-        'n8n',
-        'Playwright',
-        'BeautifulSoup',
-        'Selenium',
-      ],
-      color: 'from-cyan-500 to-emerald-500',
-      bgGradient: 'from-cyan-500/10 to-emerald-500/10',
-    },
-    {
-      title: 'Database',
+      title: 'Databases & Infrastructure',
       icon: Database,
-      skills: ['MySQL', 'Firebase'],
-      color: 'from-emerald-500 to-teal-500',
-      bgGradient: 'from-emerald-500/10 to-teal-500/10',
-    },
-    {
-      title: 'Cloud / Hosting',
-      icon: Cloud,
-      skills: ['Hostinger', 'VPS', 'GitHub', 'Vercel'],
-      color: 'from-teal-500 to-cyan-500',
-      bgGradient: 'from-teal-500/10 to-cyan-500/10',
-    },
-    {
-      title: 'Other Tools',
-      icon: Wrench,
-      skills: ['Postman', 'REST APIs', 'GitHub Actions'],
-      color: 'from-cyan-400 to-emerald-400',
-      bgGradient: 'from-cyan-400/10 to-emerald-400/10',
+      skills: ['MySQL', 'MongoDB', 'Firebase', 'Supabase', 'Hostinger VPS', 'Domain & DNS', 'Git & GitHub', 'Postman'],
     },
   ]
 
   return (
-    <section
-      id="skills"
-      ref={ref}
-      className="py-20"
-    >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold text-center mb-12 gradient-text"
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.6 }}
-        >
-          Skills
-        </motion.h2>
+    <section id="skills" ref={ref} className="py-20 px-6 sm:px-12 max-w-7xl mx-auto border-t border-gray-200">
+      <div className="space-y-10">
+        <div className="space-y-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-black">
+            Skills & Technologies
+          </h2>
+          <p className="text-lg text-gray-600">
+            Languages, frameworks, and modern tools I leverage to build production applications
+          </p>
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => (
-            <SkillCard
-              key={category.title}
-              category={category}
-              index={index}
-              isInView={isInView}
-            />
-          ))}
+        <div className="grid sm:grid-cols-2 gap-8">
+          {skillCategories.map((cat) => {
+            const Icon = cat.icon
+            return (
+              <div
+                key={cat.title}
+                className="bg-white rounded-3xl border border-gray-200 p-8 space-y-5 hover:border-gray-400 hover:shadow-md transition-all"
+              >
+                <div className="flex items-center gap-3 border-b border-gray-100 pb-4">
+                  <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center text-black">
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <h3 className="text-xl font-semibold text-black tracking-tight">{cat.title}</h3>
+                </div>
+
+                <div className="flex flex-wrap gap-2">
+                  {cat.skills.map((skill) => (
+                    <span
+                      key={skill}
+                      className="px-3.5 py-1.5 rounded-full bg-gray-100 text-gray-800 text-sm font-medium hover:bg-gray-200 transition"
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )
+          })}
         </div>
       </div>
     </section>
   )
 }
 
-const SkillCard = ({ category, index, isInView }) => {
-  const Icon = category.icon
-
-  return (
-    <motion.div
-      className={`relative overflow-hidden rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 bg-gradient-to-br ${category.bgGradient} backdrop-blur-sm hover:border-cyan-400/50 dark:hover:border-cyan-500/50 transition-all duration-300`}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      whileHover={{ scale: 1.02, y: -8 }}
-    >
-      {/* Gradient overlay on hover */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${category.color} opacity-0 hover:opacity-5 transition-opacity duration-300 pointer-events-none`} />
-
-      <div className="relative z-10">
-        <div
-          className={`w-14 h-14 rounded-xl bg-gradient-to-r ${category.color} flex items-center justify-center mb-4 shadow-lg`}
-        >
-          <Icon className="w-7 h-7 text-white" />
-        </div>
-        <h3 className="text-xl font-bold mb-5 text-gray-900 dark:text-white">
-          {category.title}
-        </h3>
-        <div className="flex flex-wrap gap-2.5">
-          {category.skills.map((skill, skillIndex) => (
-            <motion.span
-              key={skill}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.3, delay: index * 0.1 + skillIndex * 0.05 }}
-              className={`px-4 py-2 rounded-lg text-sm font-semibold bg-gradient-to-r ${category.color} text-white shadow-md hover:shadow-lg transition-all duration-200`}
-              whileHover={{ scale: 1.1, y: -2 }}
-            >
-              {skill}
-            </motion.span>
-          ))}
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
 export default Skills
-
