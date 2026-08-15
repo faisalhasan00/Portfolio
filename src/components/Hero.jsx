@@ -47,7 +47,7 @@ const Hero = () => {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-black leading-[1.15]"
             >
-              Building fast <span className="text-orange-600 underline decoration-orange-300 decoration-wavy decoration-2">web & mobile</span> apps with <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">AI assistance</span>.
+              Building fast, scalable <span className="text-orange-600 underline decoration-orange-300 decoration-wavy decoration-2">web & mobile</span> apps with <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">AI-powered development</span>.
             </motion.h1>
 
             {/* Concise Visual Tagline */}
