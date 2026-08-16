@@ -4,7 +4,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Code2, Smartphone, Bot, Cpu, Spark
 const Hero = () => {
   const highlights = [
     { label: 'Experience', value: '1.5+ Yrs', icon: Zap, color: 'text-amber-500 bg-amber-50 border-amber-200' },
-    { label: 'Delivered', value: '20+ Projects', icon: CheckCircle2, color: 'text-blue-500 bg-blue-50 border-blue-200' },
+    { label: 'Delivered', value: '40+ Projects', icon: CheckCircle2, color: 'text-blue-500 bg-blue-50 border-blue-200' },
     { label: 'Mobile & Web', value: 'Full-Stack', icon: Smartphone, color: 'text-emerald-500 bg-emerald-50 border-emerald-200' },
     { label: 'AI Assistance', value: 'Automations', icon: Bot, color: 'text-purple-500 bg-purple-50 border-purple-200' },
   ]
