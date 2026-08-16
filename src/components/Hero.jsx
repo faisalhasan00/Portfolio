@@ -75,8 +75,17 @@ const Hero = () => {
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
+                href="https://docs.google.com/document/d/1pmG3vCOcQB9cckcvHcPhCNI_BNllN-XG/edit?usp=drive_link&ouid=110184927717681443848&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 rounded-full border-2 border-gray-300 hover:border-black text-black px-7 py-4 text-base font-medium transition hover:bg-gray-50"
+              >
+                <span>View Resume</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
+              <a
                 href="#contact"
-                className="inline-flex items-center justify-center rounded-full border-2 border-gray-300 hover:border-black text-black px-8 py-4 text-base font-medium transition hover:bg-gray-50"
+                className="inline-flex items-center justify-center rounded-full border border-gray-200 text-gray-700 hover:border-black hover:text-black px-6 py-4 text-base font-medium transition hover:bg-gray-50"
               >
                 Let's Connect
               </a>

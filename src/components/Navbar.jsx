@@ -85,8 +85,17 @@ const Navbar = () => {
           <Linkedin className="w-4 h-4" />
         </a>
         <a
+          href="https://docs.google.com/document/d/1pmG3vCOcQB9cckcvHcPhCNI_BNllN-XG/edit?usp=drive_link&ouid=110184927717681443848&rtpof=true&sd=true"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="rounded-full border-2 border-gray-300 hover:border-black text-black px-5 py-2 text-sm font-medium transition flex items-center gap-1.5 ml-1"
+        >
+          <span>Resume</span>
+          <ArrowUpRight className="w-3.5 h-3.5" />
+        </a>
+        <a
           href="#contact"
-          className="rounded-full bg-black text-white px-6 py-2.5 text-sm font-medium hover:bg-gray-800 transition shadow-sm ml-2"
+          className="rounded-full bg-black text-white px-6 py-2.5 text-sm font-medium hover:bg-gray-800 transition shadow-sm ml-1"
         >
           Get in touch
         </a>
@@ -122,7 +131,17 @@ const Navbar = () => {
                 {item.name}
               </a>
             ))}
-            <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
+            <div className="pt-4 border-t border-gray-100 flex flex-col gap-2.5">
+              <a
+                href="https://docs.google.com/document/d/1pmG3vCOcQB9cckcvHcPhCNI_BNllN-XG/edit?usp=drive_link&ouid=110184927717681443848&rtpof=true&sd=true"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="w-full text-center rounded-full border-2 border-gray-300 text-black py-3 text-base font-medium flex items-center justify-center gap-1.5"
+              >
+                <span>View Resume</span>
+                <ArrowUpRight className="w-4 h-4" />
+              </a>
               <a
                 href="#contact"
                 onClick={() => setIsMobileMenuOpen(false)}

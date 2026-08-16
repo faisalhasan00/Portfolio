@@ -21,7 +21,16 @@ const Footer = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center flex-wrap gap-3">
+            <a
+              href="https://docs.google.com/document/d/1pmG3vCOcQB9cckcvHcPhCNI_BNllN-XG/edit?usp=drive_link&ouid=110184927717681443848&rtpof=true&sd=true"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-5 py-3 rounded-full border border-gray-300 flex items-center justify-center text-sm font-semibold text-black hover:border-black transition"
+              title="Official Resume"
+            >
+              <span>Resume</span>
+            </a>
             <a
               href="https://github.com/faisalhasan00"
               target="_blank"

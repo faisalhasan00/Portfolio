@@ -1,5 +1,5 @@
 import { useRef } from 'react'
-import { Briefcase, Smartphone, GraduationCap, Cpu, CheckCircle2, Shield, Zap, Sparkles } from 'lucide-react'
+import { Briefcase, Smartphone, GraduationCap, Cpu, CheckCircle2, Shield, Zap, Sparkles, ArrowUpRight } from 'lucide-react'
 
 const About = () => {
   const ref = useRef(null)
@@ -54,16 +54,27 @@ const About = () => {
   return (
     <section id="about" ref={ref} className="py-20 px-6 sm:px-12 max-w-7xl mx-auto border-t border-gray-200">
       <div className="space-y-10">
-        <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">
-            <span>⚡ Background & Engineering Approach</span>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+          <div className="space-y-2">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gray-100 text-gray-800 text-xs font-semibold">
+              <span>⚡ Background & Credentials</span>
+            </div>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-black">
+              About Mohammed Faisal Hasan
+            </h2>
+            <p className="text-lg text-gray-600">
+              Software Developer & AI Automation Engineer focused on building high-speed digital products
+            </p>
           </div>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-medium tracking-tight text-black">
-            About Mohammed Faisal Hasan
-          </h2>
-          <p className="text-lg text-gray-600">
-            Software Developer & AI Automation Engineer focused on building high-speed digital products
-          </p>
+          <a
+            href="https://docs.google.com/document/d/1pmG3vCOcQB9cckcvHcPhCNI_BNllN-XG/edit?usp=drive_link&ouid=110184927717681443848&rtpof=true&sd=true"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full border-2 border-gray-300 hover:border-black text-black font-semibold text-sm transition self-start sm:self-auto bg-white shadow-sm"
+          >
+            <span>View Full Resume</span>
+            <ArrowUpRight className="w-4 h-4" />
+          </a>
         </div>
 
         {/* 4 Visual Cards instead of long paragraphs */}
