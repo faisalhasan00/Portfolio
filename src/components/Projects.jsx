@@ -30,6 +30,15 @@ const Projects = () => {
       image: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Ftapmenu.in?w=900',
     },
     {
+      title: 'RewardSphere – Cashback & Rewards Platform',
+      badge: 'Live Platform',
+      category: 'Full-Stack & Mobile',
+      description: "India's premier cashback, coupon, and deal aggregation platform featuring real-time affiliate tracking, live cashback tickers, multi-store coupon engines (Amazon, Flipkart, Myntra, Ajio), and automated wallet payout management.",
+      tech: ['Next.js', 'React', 'Tailwind CSS', 'Node.js', 'PostgreSQL', 'Affiliate APIs'],
+      live: 'https://reward-sphere.vercel.app/',
+      image: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Freward-sphere.vercel.app%2F?w=900',
+    },
+    {
       title: 'QuickPrepp – Crack Your Dream Job with AI',
       badge: 'Live AI App',
       category: 'AI & Automations',
