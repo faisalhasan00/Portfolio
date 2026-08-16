@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { ArrowDown, ArrowRight, Code2, Smartphone, Bot, Cpu, Sparkles, ShieldCheck, Zap, Database, Terminal, CheckCircle2 } from 'lucide-react'
+import { ArrowDown, ArrowRight, ArrowUpRight, Code2, Smartphone, Bot, Cpu, Sparkles, ShieldCheck, Zap, Database, Terminal, CheckCircle2 } from 'lucide-react'
 
 const Hero = () => {
   const highlights = [
